@@ -1,0 +1,129 @@
+import React, { useEffect, useState } from "react";
+
+function extractStars(text = "") {
+  const m = text.match(/(★{1,5}(?:½)?)/);
+  return m ? m[1] : "";
+}
+
+function cleanTitle(text = "", username = "") {
+  let t = text;
+  t = t.replace(new RegExp(`^${username}\\s+`, "i"), "");
+  t = t.replace(/^watched and rated\s+/i, "");
+  t = t.replace(/^watched\s+/i, "");
+  t = t.replace(/^rated\s+/i, "");
+  return t.trim();
+}
+
+function stripHtml(html = "") {
+  return html
+    .replace(/<br\s*\/?>/gi, "\n")
+    .replace(/<\/p>/gi, "\n\n")
+    .replace(/<[^>]*>/g, "")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+}
+
+export default function LetterboxdCard({ username = "morgankobayashi", count = 12 }) {
+  const [state, setState] = useState({ status: "idle", items: [], profileUrl: "" });
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function run() {
+      setState((s) => ({ ...s, status: "loading" }));
+      try {
+        const res = await fetch(
+          `/api/letterboxd?username=${encodeURIComponent(username)}&count=${count}`
+        );
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+
+        if (!cancelled) {
+          setState({
+            status: "ready",
+            items: data.items || [],
+            profileUrl: data.profileUrl || `https://letterboxd.com/${username}/`,
+          });
+        }
+      } catch (e) {
+        if (!cancelled) setState((s) => ({ ...s, status: "error" }));
+      }
+    }
+
+    run();
+    return () => {
+      cancelled = true;
+    };
+  }, [username, count]);
+
+  const profileUrl = state.profileUrl || `https://letterboxd.com/${username}/`;
+
+  return (
+    <div className="rounded-3xl border border-black/10 bg-white p-5 shadow-soft">
+      {/* Scroll area */}
+      <div className="max-h-[340px] overflow-y-auto pr-2">
+        {state.status === "loading" && (
+          <p className="text-sm text-black/60">Loading…</p>
+        )}
+
+        {state.status === "error" && (
+          <p className="text-sm text-black/60">
+            Couldn’t load the feed right now.
+          </p>
+        )}
+
+        {state.status === "ready" && state.items.length > 0 && (
+          <ul className="space-y-4">
+            {state.items.map((it) => {
+              const stars = extractStars(it.title);
+              const title = cleanTitle(it.title, username).replace(stars, "").trim();
+
+              const reviewText = stripHtml(it.description || "");
+              const hasReview =
+                reviewText.length > 0 &&
+                // filter out cases where description is just “watched X” style with no real text
+                reviewText.split(/\s+/).length >= 8;
+
+              return (
+                <li key={it.link} className="border-b border-black/5 pb-4 last:border-b-0 last:pb-0">
+                  <div className="flex items-start justify-between gap-3">
+                    <a
+                      href={it.link}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-sm font-semibold text-black/80 hover:text-black"
+                      title={it.title}
+                    >
+                      {title || it.title}
+                    </a>
+                    {stars ? <span className="shrink-0 text-sm text-mint-700">{stars}</span> : null}
+                  </div>
+
+                  {hasReview ? (
+                    <p className="mt-2 text-sm text-black/65 whitespace-pre-line">
+                      {reviewText}
+                    </p>
+                  ) : (
+                    <p className="mt-2 text-xs text-black/45">
+                      (no written review — just logging)
+                    </p>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+        )}
+      </div>
+
+      {/* Profile link at bottom */}
+      <a
+        href={profileUrl}
+        target="_blank"
+        rel="noreferrer"
+        className="mt-5 inline-flex w-full items-center justify-center rounded-2xl border border-black/10 bg-white px-4 py-2.5 text-sm font-semibold text-black/80 hover:bg-black/5"
+      >
+        View my profile
+      </a>
+    </div>
+  );
+}
