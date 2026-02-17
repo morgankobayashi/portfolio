@@ -78,7 +78,7 @@ export default function RLGAssessmentIndex() {
               <p className="mt-2 max-w-3xl text-sm leading-6 text-black/70">
                 Kept the copy very simple, used the headline as a clear descriptor of the product. Then used additional copy to expand on the offering with a clear CTA button for conversions. </p>
                           <p className="mt-2 max-w-3xl text-sm leading-6 text-black/70">
-                The design was made to respect visual hierchy and guide the eye in the proper order: Headline, then body, then CTA. Icons were used to keep the slide from becoming to visually bland. </p>
+                The design was made to respect visual hierchy and guide the eye in the proper order: Headline, then body, then CTA. Icons were used to keep the slide from becoming too visually bland. </p>
             </div>
           </div>
 
@@ -109,9 +109,7 @@ export default function RLGAssessmentIndex() {
                 be changing?” because it’s a fast, low-friction hook for a scrolling audience. It
                 signals that something is in motion without overstating certainty, which matches the
                 reality of proposed legislation that may advance or stall. It also tees up the value
-                of Horizon Scanning: if timelines are uncertain but lead times are long, teams
-                benefit from tracking milestones early and setting decision triggers before
-                requirements become binding.
+                of Horizon Scanning.
               </p>
 
               <p className="mt-2 max-w-3xl text-sm leading-6 text-black/70">
