@@ -13,6 +13,8 @@ import TwoColBlock from "./TwoColBlock.jsx";
 import FeatureGridBlock from "./FeatureGridBlock.jsx";
 import CtaBlock from "./CtaBlock.jsx";
 import VideoMarqueeBlock from "./VideoMarqueeBlock.jsx";
+import VideoCaseBlock from "./VideoCaseBlock";
+
 
 const BLOCKS = {
   hero: HeroBlock,
@@ -26,6 +28,7 @@ const BLOCKS = {
   featureGrid: FeatureGridBlock,
   cta: CtaBlock,
   videoMarquee: VideoMarqueeBlock,
+  videoCase: VideoCaseBlock,
 };
 
 function AnimatedBlock({ children, index }) {

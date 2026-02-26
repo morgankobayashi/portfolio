@@ -13,7 +13,6 @@ export const projects = [
   {
   title: "Highlands Music Festival",
   slug: "highlands-paid-social",
-  year: "2024",
   tags: ["Marketing", "Video"],
   headline: "Paid social campaign with monthly creative iteration + A/B testing.",
   thumbnail: "/thumbnails/highlands.jpg",
@@ -142,4 +141,76 @@ export const projects = [
 	],
 	},
 	
+{
+  title: "Rhyan Douglas - Magic Gurl (Visualizer) ft. Lekan",
+  slug: "rhyan-douglas-magic-gurl",
+  tags: ["Video"],
+  thumbnail: "/thumbnails/magicgurl.jpg",
+
+  blocks: [
+    {
+      type: "videoCase",
+      heading: "Rhyan Douglas — Magic Gurl (Visualizer) ft. Lekan",
+
+      // YouTube or Vimeo URL:
+      src: "https://www.youtube.com/watch?v=Cui24x54hus",
+      // src: "https://vimeo.com/123456789",
+
+      // Or local mp4 in /public/videos/
+      // src: "/videos/launch-reel.mp4",
+      poster: "/thumbnails/launch-reel.jpg",
+
+      // Optional: keep the card a bit bigger / more “page-like”
+      cardClassName: "max-w-4xl mx-auto",
+
+
+      // Description underneath (string OR your structured body format)
+      description: [
+        {
+          type: "p",
+          text:
+            "Did the VFX compositing for this music video. The job required me to stitch together 5 seperate performance shots to appear as one seamless video. Each clip required meticulous rotoscoping of the performances as well as reworking of the timing to sync with the female actors movements.",
+        },
+      ],
+    },
+  ],
+  
+},
+
+{
+  title: "Roderick Porter - NOT AGAIN (Official Visualizer)",
+  slug: "rodrick-porter-not-again",
+  tags: ["Video"],
+  thumbnail: "/thumbnails/rodrickporter.jpg",
+
+  blocks: [
+    {
+      type: "videoCase",
+      heading: "Roderick Porter - NOT AGAIN (Official Visualizer)",
+
+      // YouTube or Vimeo URL:
+      src: "https://www.youtube.com/watch?v=AjwLfTJNNvU",
+      // src: "https://vimeo.com/123456789",
+
+      // Or local mp4 in /public/videos/
+      // src: "/videos/launch-reel.mp4",
+      poster: "/thumbnails/launch-reel.jpg",
+
+      // Optional: keep the card a bit bigger / more “page-like”
+      cardClassName: "max-w-4xl mx-auto",
+
+
+      // Description underneath (string OR your structured body format)
+      description: [
+        {
+          type: "p",
+          text:
+            "Did the VFX compositing and surpervising for this music video. The job required me to figure how to execute a constant blue cry effect. The effect was created by weaving a tube through his hat and attaching to his forhead, then painting out the tube in post production. Additionally the source of the liquid did not appear to be streaming from the tear duct so some simulated liquid had to be added to create the full effect.",
+        },
+      ],
+    },
+  ],
+  
+}
+
 ];

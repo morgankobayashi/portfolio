@@ -1,43 +1,29 @@
 // src/components/FilterChips.jsx
 import React from "react";
-import { motion } from "framer-motion";
 
-/**
- * FilterChips is a “controlled component”.
- *
- * That means:
- * - The parent component (HomePage) owns the state: `active`
- * - FilterChips just renders the UI and calls `onChange(tag)` when clicked
- *
- * Props:
- * - tags: array of strings (All, Marketing, Video...)
- * - active: currently selected tag
- * - onChange: function to update the parent state
- */
-export default function FilterChips({ tags, active, onChange }) {
+export default function FilterChips({ tags = [], active = "All", onChange }) {
   return (
     <div className="flex flex-wrap gap-2">
-      {tags.map((t) => {
-        const isActive = t === active;
+      {tags.map((tag) => {
+        const isActive = tag === active;
 
         return (
           <button
-            key={t}
-            onClick={() => onChange(t)}
+            key={tag}
+            type="button"
+            onClick={() => onChange?.(tag)}
+            aria-pressed={isActive}
             className={[
-              "relative rounded-full px-3 py-1.5 text-sm font-medium transition",
-              isActive ? "text-mint-950" : "text-black/70 hover:text-black",
+              "rounded-full px-4 py-2 text-sm font-semibold transition-all",
+              "ring-1 ring-black/10",
+              "focus:outline-none focus:ring-2 focus:ring-mint-400",
+
+              isActive
+                ? "bg-mint-600 text-white shadow-soft ring-mint-600"
+                : "bg-white text-black/70 hover:bg-black/5 hover:text-black/80",
             ].join(" ")}
           >
-            {/* This animated span “moves” between chips because layoutId stays the same */}
-            {isActive && (
-              <motion.span
-                layoutId="chip"
-                className="absolute inset-0 -z-10 rounded-full bg-mint-100"
-                transition={{ type: "spring", stiffness: 420, damping: 30 }}
-              />
-            )}
-            {t}
+            {tag}
           </button>
         );
       })}
