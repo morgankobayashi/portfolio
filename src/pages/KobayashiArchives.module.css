@@ -1,0 +1,679 @@
+.archiveRoot {
+  --bg: #d9d9d9;
+  --ink: #111;
+  --tab: #f0f0eb;
+  --folder: #ebe8df;
+
+  min-height: 100dvh;
+  height: 100dvh;
+  background: transparent;
+  color: var(--ink);
+  font-family: "Courier New", Courier, monospace;
+  overflow: hidden;
+}
+
+.stage {
+  width: 100%;
+  min-height: 100dvh;
+  height: 100dvh;
+  padding: 12px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  overflow: hidden;
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.modeToggleRow {
+  --toggle-bg: #d8ead0;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.modeToggleLabel {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: #444;
+  transition: color 180ms ease;
+}
+
+.modeToggleLabelActive {
+  color: #111;
+}
+
+.modeToggleControl {
+  position: relative;
+  display: inline-flex;
+  cursor: pointer;
+}
+
+.modeToggleControl input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modeToggleTrack {
+  width: 62px;
+  height: 30px;
+  border: 1px solid #111;
+  background: #e7e7e1;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 260ms ease, box-shadow 220ms ease;
+}
+
+.modeToggleTrack::before {
+  content: "";
+  position: absolute;
+  left: 1px;
+  top: 1px;
+  width: 28px;
+  height: 26px;
+  background: color-mix(in srgb, var(--toggle-bg) 78%, #dcded8);
+  transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.modeToggleKnob {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  left: 2px;
+  top: 2px;
+  border: 1px solid #111;
+  background: #f8f7f2;
+  box-shadow: 0 1px 0 rgba(17, 17, 17, 0.25);
+  transform: translateX(0);
+  transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 220ms ease;
+}
+
+.modeToggleControl input:checked + .modeToggleTrack .modeToggleKnob {
+  transform: translateX(30px);
+  box-shadow: -1px 1px 0 rgba(17, 17, 17, 0.3);
+}
+
+.modeToggleControl input:checked + .modeToggleTrack::before {
+  transform: translateX(30px);
+}
+
+.modeToggleControl:hover .modeToggleTrack {
+  box-shadow: inset 0 0 0 1px rgba(17, 17, 17, 0.12);
+}
+
+.filterBar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  justify-content: center;
+  align-items: center;
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 0 8px 0;
+}
+
+.filterChip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 0;
+  background: transparent;
+  color: #111;
+  padding: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.58rem;
+  font-weight: 700;
+  cursor: pointer;
+  user-select: none;
+}
+
+.filterChip input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.filterBox {
+  position: relative;
+  width: 11px;
+  height: 11px;
+  border: 1px solid #111;
+  background: #f8f7f2;
+  flex: 0 0 auto;
+}
+
+.filterChipActive {
+  color: #0e0e0e;
+}
+
+.filterBox::after {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 0px;
+  width: 4px;
+  height: 7px;
+  border-right: 1px solid #111;
+  border-bottom: 1px solid #111;
+  transform: rotate(45deg) scale(0);
+  transform-origin: center;
+}
+
+.filterChipActive .filterBox {
+  background: #dfead4;
+}
+
+.filterChipActive .filterBox::after {
+  transform: rotate(45deg) scale(1);
+}
+
+.filterLabel {
+  white-space: nowrap;
+}
+
+.stackFrame {
+  background: transparent;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin-top: 2px;
+  margin-bottom: -8px;
+  flex: 1;
+  min-height: 0;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.stackFrame::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.vaultDock {
+  margin-top: auto;
+  padding: 0;
+}
+
+.vaultHandle {
+  width: 100%;
+  border: 1px solid #1f2226;
+  background: #4f5358;
+  color: #e8eaec;
+  height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.68rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.vaultOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(16, 18, 21, 0.82);
+  z-index: 1200;
+  display: flex;
+  align-items: flex-end;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease;
+}
+
+.vaultOverlayOpen {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.vaultPanel {
+  width: 100%;
+  min-height: 100dvh;
+  background: #363a40;
+  color: #eef0f2;
+  border-top: 1px solid #1f2226;
+  transform: translateY(100%);
+  transition: transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  padding: 14px;
+  overflow-y: auto;
+}
+
+.vaultOverlayOpen .vaultPanel {
+  transform: translateY(0);
+}
+
+.vaultHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.vaultHeader h2 {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.78rem;
+}
+
+.vaultClose {
+  border: 1px solid #d8dce0;
+  background: transparent;
+  color: #eef0f2;
+  padding: 6px 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  font-size: 0.64rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.vaultForm {
+  max-width: 380px;
+  min-height: calc(100dvh - 120px);
+  margin: 0 auto;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 10px;
+}
+
+.vaultForm label {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.64rem;
+  font-weight: 700;
+}
+
+.vaultLockGlyph {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.vaultPinBoxes {
+  display: flex;
+  gap: 8px;
+  cursor: text;
+}
+
+.vaultPinBox {
+  width: 34px;
+  height: 42px;
+  border: 1px solid #cfd4d8;
+  background: #24292f;
+  position: relative;
+}
+
+.vaultPinBoxFilled::after {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: #eef0f2;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.vaultPinInput {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.vaultForm button {
+  border: 1px solid #cfd4d8;
+  background: #4f5358;
+  color: #eef0f2;
+  height: 40px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.65rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.vaultForm p {
+  margin: 0;
+  color: #ffc6c6;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.vaultGrid {
+  padding: 4px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.vaultGrid .thumbCard {
+  background: #eceef0;
+}
+
+.vaultGrid .thumbCard h3 {
+  color: #111;
+  font-size: 0.72rem;
+  line-height: 1.35;
+}
+
+.emptyState {
+  border: 1px dashed #111;
+  margin: 10px;
+  background: #f1f1ec;
+  text-align: center;
+  padding: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  font-size: 0.72rem;
+}
+
+.stackCanvas {
+  position: relative;
+  padding: 64px 0 14px;
+  min-height: max(260px, 100%);
+  --switch-duration: 360ms;
+  --switch-stagger: 45ms;
+}
+
+.stackLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.stackCanvasOut {
+  z-index: 1;
+  pointer-events: none;
+}
+
+.stackCanvasOut .folder,
+.stackCanvasOut .folderLip {
+  animation: folderSlideOutLeft var(--switch-duration) cubic-bezier(0.55, 0.06, 0.68, 0.19) both;
+  animation-delay: calc(var(--folder-index, 0) * var(--switch-stagger));
+}
+
+.stackCanvasIn {
+  z-index: 2;
+  pointer-events: none;
+}
+
+.stackCanvasIn .folder,
+.stackCanvasIn .folderLip {
+  animation: folderSlideInRight var(--switch-duration) cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(var(--folder-index, 0) * var(--switch-stagger));
+}
+
+.stackCanvasIn {
+  animation: stackToneReset var(--switch-duration) linear both;
+}
+
+.folder {
+  --active-lift: 0px;
+  --scroll-offset: 0px;
+  --scroll-folder-scale: 1;
+  --scroll-clip-folder: 0px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  transition: top 280ms cubic-bezier(0.23, 1, 0.32, 1), transform 120ms linear;
+  transform-origin: top center;
+  transform: translateY(calc(var(--active-lift) + var(--scroll-offset))) scaleY(var(--scroll-folder-scale));
+  clip-path: inset(var(--scroll-clip-folder) 0 0 0);
+  cursor: pointer;
+}
+
+.folder:hover .folderTopEdge {
+  transform: translateY(-2px);
+}
+
+.folderTopEdge,
+.folderLip {
+  transition: transform 160ms ease, top 360ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.folderTopEdge {
+  height: 44px;
+  border: 1px solid #111;
+  border-bottom: none;
+  background: var(--folder-shade, #ecebe4);
+  border-radius: 3px 3px 0 0;
+}
+
+.folderLip {
+  --scroll-offset: 0px;
+  --scroll-lip-scale: 1;
+  --scroll-clip-lip: 0px;
+  position: absolute;
+  min-width: 230px;
+  max-width: 360px;
+  height: 44px;
+  border: 1px solid #111;
+  border-bottom: none;
+  border-radius: 14px 14px 0 0;
+  background: var(--folder-shade, #ecebe4);
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-align: left;
+  transform-origin: top center;
+  transform: translateY(var(--scroll-offset)) scaleY(var(--scroll-lip-scale));
+  clip-path: inset(var(--scroll-clip-lip) 0 0 0);
+  cursor: pointer;
+}
+
+.folderLip:hover {
+  transform: translateY(calc(var(--scroll-offset) - 2px));
+}
+
+.folderLipTail {
+  pointer-events: none;
+  cursor: default;
+}
+
+.folderLipTail:hover {
+  transform: none;
+}
+
+.folderLip span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.folderLip strong {
+  min-width: 30px;
+  text-align: right;
+}
+
+.folderBody {
+  height: 0;
+  overflow: hidden;
+  border: none;
+  background: var(--folder-shade, var(--folder));
+  transition: height 360ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.folderTail {
+  pointer-events: none;
+  cursor: default;
+}
+
+.folderTail .folderBody {
+  height: calc(100% - 44px);
+  border-left: 1px solid #111;
+  border-right: 1px solid #111;
+  border-bottom: 1px solid #111;
+}
+
+.folderActive {
+  --active-lift: -10px;
+}
+
+.folderActive .folderBody {
+  height: 360px;
+  border-left: 1px solid #111;
+  border-right: 1px solid #111;
+}
+
+.thumbGrid {
+  height: 100%;
+  padding: 10px;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  align-items: flex-start;
+  gap: 8px;
+  scrollbar-width: thin;
+}
+
+.thumbCard {
+  flex: 0 0 220px;
+  border: 1px solid #111;
+  background: #f7f6f1;
+}
+
+.thumbButton {
+  display: block;
+  width: 100%;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  text-align: left;
+  color: inherit;
+  cursor: pointer;
+}
+
+.thumbButton:focus-visible {
+  outline: 2px solid #111;
+  outline-offset: -2px;
+}
+
+.thumbCard img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-bottom: 1px solid #111;
+}
+
+.thumbCard h3 {
+  margin: 0;
+  padding: 6px;
+  font-size: 0.63rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+}
+
+.videoLightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1600;
+  background: rgba(6, 7, 10, 0.88);
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}
+
+.videoLightboxPanel {
+  width: min(980px, 100%);
+  display: grid;
+  gap: 8px;
+}
+
+.videoLightboxClose {
+  justify-self: end;
+  border: 1px solid #d8dce0;
+  background: rgba(24, 27, 31, 0.9);
+  color: #eef0f2;
+  padding: 6px 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.64rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.videoLightboxFrame {
+  width: 100%;
+  border: 1px solid #cdd2d7;
+  background: #0d1014;
+  aspect-ratio: 16 / 9;
+}
+
+.videoLightboxFrame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+@keyframes folderSlideOutLeft {
+  0% {
+    transform: translateX(0);
+    visibility: visible;
+  }
+  100% {
+    transform: translateX(calc(-100vw - 80px));
+    visibility: hidden;
+  }
+}
+
+@keyframes folderSlideInRight {
+  0% {
+    transform: translateX(calc(100vw + 80px));
+    visibility: hidden;
+  }
+  1% {
+    visibility: visible;
+  }
+  100% {
+    transform: translateX(0);
+    visibility: visible;
+  }
+}
+
+@keyframes stackToneReset {
+  from {
+    filter: saturate(0.88) brightness(0.95);
+  }
+  to {
+    filter: saturate(1) brightness(1);
+  }
+}
+
+@media (max-width: 1000px) {
+  .thumbGrid {
+    padding: 8px;
+  }
+
+  .thumbCard {
+    flex-basis: 180px;
+  }
+
+  .vaultGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

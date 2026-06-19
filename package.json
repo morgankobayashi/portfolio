@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "concurrently -n VITE,API -c auto \"vite\" \"node server/index.js\"",
     "build": "vite build",
-    "start": "node server/index.js"
+    "start": "node server/index.js",
+    "sync-archive": "node scripts/sync-archive.mjs"
   },
   "dependencies": {
     "express": "^5.2.1",
