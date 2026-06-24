@@ -14,6 +14,8 @@ import FeatureGridBlock from "./FeatureGridBlock.jsx";
 import CtaBlock from "./CtaBlock.jsx";
 import VideoMarqueeBlock from "./VideoMarqueeBlock.jsx";
 import VideoCaseBlock from "./VideoCaseBlock";
+import ImageGalleryBlock from "./ImageGalleryBlock.jsx";
+import VideoGridBlock from "./VideoGridBlock.jsx";
 
 
 const BLOCKS = {
@@ -29,6 +31,8 @@ const BLOCKS = {
   cta: CtaBlock,
   videoMarquee: VideoMarqueeBlock,
   videoCase: VideoCaseBlock,
+  imageGallery: ImageGalleryBlock,
+  videoGrid: VideoGridBlock,
 };
 
 function AnimatedBlock({ children, index }) {

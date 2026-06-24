@@ -1,6 +1,6 @@
 // src/data/projects.js
 
-export const PROJECT_TAGS = ["All", "Marketing", "Programming", "Video", "Design"];
+export const PROJECT_TAGS = ["All", "Marketing", "Programming", "Video", "Design", "Photography"];
 
 /**
  * Blocks = a list of sections that can vary per project.
@@ -10,24 +10,81 @@ export const PROJECT_TAGS = ["All", "Marketing", "Programming", "Video", "Design
  */
 export const projects = [
 
-  {
-  title: "Highlands Music Festival",
-  slug: "highlands-paid-social",
-  tags: ["Marketing", "Video"],
-  headline: "Paid social campaign with monthly creative iteration + A/B testing.",
-  thumbnail: "/thumbnails/highlands.jpg",
+{
+  title: "NOBRO - Concert Photography + Video",
+  slug: "nobro-concert-photo-video",
+  tags: ["Video", "Photography"],
+  headline: "Concert photography and video coverage for NOBRO.",
+  thumbnail: "/images/nobro/Nobro_History-01.jpg",
 
   blocks: [
     {
       type: "hero",
-      kicker: "Marketing Campaign",
-      title: "Highlands Music Festival",
-      subtitle:
-        "Built a layered Meta campaign (awareness → conversion → remarketing), refreshed creative monthly, and used A/B testing to keep performance strong through the full sales cycle — ending with a sell-out.",
-      badges: ["Meta Ads", "A/B Testing", "Creative Iteration", "Lead Gen"],
-      bgImage: "/case-hero/highlands.jpg",
-      bgPosition: "50% 30%",
+      title: "NOBRO - Concert Photography + Video",
+      badges: ["Photography", "Video", "Concert Coverage", "Editing"],
+      bgImage: "/images/nobro/Nobro_History-01.jpg",
+      bgPosition: "50% 35%",
     },
+
+    {
+      type: "text",
+      title: "What I did",
+      body: [
+        {
+          type: "p",
+          text:
+            "I captured concert photography and video for NOBRO, focusing on the speed, energy, and physicality of the live performance. The work involved shooting in a fast-moving low-light environment, selecting strong performance moments, and capturing footage that reflected the feeling of the show rather than simply documenting it. For this project I opted for a handheld gritty punk feeling.",
+        },
+        {
+          type: "p",
+          text:
+			"I delivered a curated selection of images and video of their entire performance for them to use for promotional purposes, social media content, and future marketing materials. Below I have a selection of images I captured aswell as a highlight reel of the performance.",
+        },
+      ],
+    },
+
+    {
+      type: "imageGallery",
+      title: "Photo gallery",
+      images: Array.from({ length: 29 }, (_, index) => {
+        const number = String(index + 1).padStart(2, "0");
+
+        return {
+          src: `/images/nobro/Nobro_History-${number}.jpg`,
+          alt: `NOBRO live concert photo ${number}`,
+        };
+      }),
+    },
+
+    {
+      type: "videoCase",
+      heading: "NOBRO — Live Highlight Reel",
+      src: "https://youtu.be/o9jDatKe93U",
+      poster: "/images/nobro/Nobro_History-01.jpg",
+      cardClassName: "max-w-4xl mx-auto",
+  
+    },
+  ],
+},
+
+{
+title: "Highlands Music Festival",
+slug: "highlands-paid-social",
+tags: ["Marketing", "Video"],
+headline: "Paid social campaign with monthly creative iteration + A/B testing.",
+thumbnail: "/thumbnails/highlands.jpg",
+
+blocks: [
+	{
+	type: "hero",
+	kicker: "Marketing Campaign",
+	title: "Highlands Music Festival",
+	subtitle:
+		"Built a layered Meta campaign (awareness → conversion → remarketing), refreshed creative monthly, and used A/B testing to keep performance strong through the full sales cycle — ending with a sell-out.",
+	badges: ["Meta Ads", "A/B Testing", "Creative Iteration", "Lead Gen"],
+	bgImage: "/case-hero/highlands.jpg",
+	bgPosition: "50% 30%",
+	},
 
 	{
 	type: "results",
@@ -139,7 +196,7 @@ export const projects = [
 	},
 
 	],
-	},
+},
 	
 {
   title: "Rhyan Douglas - Magic Gurl (Visualizer) ft. Lekan",

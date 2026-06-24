@@ -194,7 +194,7 @@ export default function HomePage() {
 
 
       {/* PROJECTS */}
-      <Section id="projects" kicker="Projects" title="A filterable mix of campaigns, builds, and content.">
+		<Section id="projects" kicker="Projects" title="Check out some projects I've worked on.">
         <div className="mt-2 flex flex-col gap-5">
           <FilterChips tags={PROJECT_TAGS} active={filter} onChange={setFilter} />
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -205,31 +205,7 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* SKILLS */}
-      <Section id="skills" kicker="Skills" title="What I can do (and what I enjoy doing).">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {[
-            { title: "Marketing Strategy", items: ["Campaign planning", "Positioning + messaging", "Creative frameworks"] },
-            { title: "Content Creation", items: ["Video editing + motion", "Copywriting", "Design systems"] },
-            { title: "Analytics", items: ["GA4 + GSC", "Conversion tracking", "Testing + iteration"] },
-            { title: "Web + Tech", items: ["React basics", "WordPress + SEO", "Automation mindset"] },
-            { title: "SEO / AEO", items: ["Content structure", "Schema ideas", "AI visibility thinking"] },
-            { title: "Collaboration", items: ["Client communication", "Roadmaps + docs", "Cross-discipline work"] },
-          ].map((card) => (
-            <div key={card.title} className="rounded-3xl border border-black/10 bg-white p-5 shadow-soft">
-              <h3 className="text-base font-semibold">{card.title}</h3>
-              <ul className="mt-3 space-y-2 text-sm text-black/70">
-                {card.items.map((it) => (
-                  <li key={it} className="flex gap-2">
-                    <span className="mt-2 h-2 w-2 rounded-full bg-mint-500" />
-                    <span>{it}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </Section>
+    
 
       {/* CONTACT */}
       <Section id="contact" kicker="Contact" title="Want to work together?">
