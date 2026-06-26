@@ -38,11 +38,6 @@ export const archiveCategories = [
     "id": "performance",
     "label": "Live Performance",
     "color": "#c9e2be"
-  },
-  {
-    "id": "vfx-shots",
-    "label": "VFX",
-    "color": "#bbd8ad"
   }
 ];
 
@@ -118,16 +113,6 @@ export const archiveVideos = [
     "notes": ""
   },
   {
-    "id": "evil-rage-vape-from-hell",
-    "title": "Evil Rage Vape From Hell",
-    "year": 2021,
-    "categoryId": "short-films",
-    "sourceId": "xjlnOFpHqWM",
-    "thumbnail": "https://i.ytimg.com/vi/xjlnOFpHqWM/hqdefault.jpg",
-    "duration": "",
-    "notes": ""
-  },
-  {
     "id": "2025-04-26-lucas-and-fabienne-s-wedding",
     "title": "2025-04-26 - Lucas and Fabienne�s Wedding",
     "year": 2025,
@@ -164,16 +149,6 @@ export const archiveVideos = [
     "categoryId": "music-videos",
     "sourceId": "jdGl8ePVTaw",
     "thumbnail": "https://i.ytimg.com/vi/jdGl8ePVTaw/hqdefault.jpg",
-    "duration": "",
-    "notes": ""
-  },
-  {
-    "id": "kids-we-used-to-be",
-    "title": "Kids We Used To Be",
-    "year": 2020,
-    "categoryId": "home-movies",
-    "sourceId": "37gM3MtICcQ",
-    "thumbnail": "https://i.ytimg.com/vi/37gM3MtICcQ/hqdefault.jpg",
     "duration": "",
     "notes": ""
   },
@@ -364,36 +339,6 @@ export const archiveVideos = [
     "categoryId": "short-films",
     "sourceId": "xveIj7M6Uw4",
     "thumbnail": "https://i.ytimg.com/vi/xveIj7M6Uw4/hqdefault.jpg",
-    "duration": "",
-    "notes": ""
-  },
-  {
-    "id": "ufo",
-    "title": "UFO",
-    "year": 2014,
-    "categoryId": "vfx-shots",
-    "sourceId": "ZltD5_ki5bs",
-    "thumbnail": "https://i.ytimg.com/vi/ZltD5_ki5bs/hqdefault.jpg",
-    "duration": "",
-    "notes": ""
-  },
-  {
-    "id": "ufo-2",
-    "title": "UFO 2",
-    "year": 2014,
-    "categoryId": "vfx-shots",
-    "sourceId": "jP3FaLXMhyY",
-    "thumbnail": "https://i.ytimg.com/vi/jP3FaLXMhyY/hqdefault.jpg",
-    "duration": "",
-    "notes": ""
-  },
-  {
-    "id": "the-new-ipad-hologram-2-0",
-    "title": "The new Ipad hologram 2.0",
-    "year": 2013,
-    "categoryId": "vfx-shots",
-    "sourceId": "KA_UuYYiW6c",
-    "thumbnail": "https://i.ytimg.com/vi/KA_UuYYiW6c/hqdefault.jpg",
     "duration": "",
     "notes": ""
   },

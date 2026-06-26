@@ -5,8 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "concurrently -n VITE,API -c auto \"vite\" \"node server/index.js\"",
+    "predev": "npm run sync-archive",
     "build": "vite build",
+    "prebuild": "npm run sync-archive",
     "start": "node server/index.js",
+    "prestart": "npm run sync-archive",
     "sync-archive": "node scripts/sync-archive.mjs"
   },
   "dependencies": {
